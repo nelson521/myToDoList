@@ -7,16 +7,30 @@ let collection = document.querySelector('.collection');
 
   click the submit button to submit the value in the input
 
+
   it should appear on the collections area 
   delete the item
 
 */
 
 form.addEventListener('submit', function addTask(e) {
-  if (task.value === '') {
-    alert('Please fill out');
-  } else {
-    console.log(task.value);
-  }
+  /* 
+    I want to place the task in the collections area 
+    I need to create a li 
+    take the value of the input 
+    append it to the ul 
+
+  */
+
+  let li = document.createElement('li');
+  let text = document.createTextNode(task.value);
+  let link = document.createElement('a');
+  li.className = 'collection-item';
+  li.appendChild(link);
+  li.appendChild(text);
+  link.className = 'secondary-content';
+  link.innerHTML = 'Trash';
+
+  task.value === '' ? alert('Please fill out ') : collection.appendChild(li);
   e.preventDefault();
 });
