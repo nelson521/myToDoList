@@ -33,6 +33,7 @@ form.addEventListener('submit', function addTask(e) {
 
   task.value === '' ? alert('Please fill out ') : collection.appendChild(li);
   e.preventDefault();
+  task.value = '';
 });
 
 parentEle.addEventListener('click', function (e) {
