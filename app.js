@@ -1,7 +1,7 @@
 let form = document.querySelector('#form');
 let task = document.querySelector('#task');
 let collection = document.querySelector('.collection');
-
+let parentEle = document.querySelector('.col');
 /* 
   type something on the input 
 
@@ -29,7 +29,13 @@ form.addEventListener('submit', function addTask(e) {
   li.appendChild(link);
   li.appendChild(text);
   link.className = 'secondary-content';
-  link.innerHTML = 'Trash';
+  link.innerHTML = '<i class="far fa-trash-alt"></i>';
+
+  parentEle.addEventListener('click', function (e) {
+    if (e.target.className === 'far fa-trash-alt') {
+      li.remove();
+    }
+  });
 
   task.value === '' ? alert('Please fill out ') : collection.appendChild(li);
   e.preventDefault();
