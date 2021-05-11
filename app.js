@@ -32,9 +32,24 @@ form.addEventListener('submit', function addTask(e) {
   link.innerHTML = '<i class="far fa-trash-alt"></i>';
 
   task.value === '' ? alert('Please fill out ') : collection.appendChild(li);
-  e.preventDefault();
+
+  storeTask(task.value);
+
   task.value = '';
+  e.preventDefault();
 });
+
+function storeTask(task) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
 parentEle.addEventListener('click', function (e) {
   if (e.target.parentElement.className === 'secondary-content') {
