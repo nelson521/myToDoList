@@ -13,6 +13,29 @@ let parentEle = document.querySelector('.collection');
 
 */
 
+document.addEventListener('DOMContentLoaded', getTasks);
+
+function getTasks() {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function (task) {
+    let li = document.createElement('li');
+    let text = document.createTextNode(task);
+    let link = document.createElement('a');
+    li.className = 'collection-item';
+    li.appendChild(link);
+    li.appendChild(text);
+    link.className = 'secondary-content';
+    link.innerHTML = '<i class="far fa-trash-alt"></i>';
+
+    task.value === '' ? alert('Please fill out ') : collection.appendChild(li);
+  });
+}
 form.addEventListener('submit', function addTask(e) {
   /* 
     I want to place the task in the collections area 
