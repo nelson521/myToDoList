@@ -36,6 +36,7 @@ function getTasks() {
     task.value === '' ? alert('Please fill out ') : collection.appendChild(li);
   });
 }
+
 form.addEventListener('submit', function addTask(e) {
   /* 
     I want to place the task in the collections area 
@@ -77,5 +78,23 @@ function storeTask(task) {
 parentEle.addEventListener('click', function (e) {
   if (e.target.parentElement.className === 'secondary-content') {
     e.target.parentElement.parentElement.remove();
+
+    removeTask(e.target.parentElement.parentElement);
   }
 });
+
+function removeTask(taskItem) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function (task, index) {
+    if (taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
