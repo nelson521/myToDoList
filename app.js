@@ -1,7 +1,7 @@
 let form = document.querySelector('#form');
 let task = document.querySelector('#task');
 let collection = document.querySelector('.collection');
-let parentEle = document.querySelector('.collection');
+
 /* 
   type something on the input 
   click the submit button to submit the value in the input
@@ -32,7 +32,7 @@ form.addEventListener('submit', function addTask(e) {
   e.preventDefault();
 });
 
-parentEle.addEventListener('click', function (e) {
+collection.addEventListener('click', function (e) {
   if (e.target.parentElement.className === 'secondary-content') {
     e.target.parentElement.parentElement.remove();
   }
